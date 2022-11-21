@@ -3,11 +3,12 @@ const books = [
     {title: 'Total enlightenment', pages: 250, genre: 'romance', rating: 2},
     {title: 'Big loss', pages: 400, genre: 'fantasy', rating: 7},
     {title: '10th Joy', pages: 32, genre: 'action', rating: 8},
-    {title: 'Quickfix', pages: 15, genre: 'fantasy', rating: 1},
+    {title: 'Quickfix', pages: 15, genre: 'fantasy', rating: 10},
     {title: 'World Ender', pages: 199, genre: 'fantasy', rating: 3},
     {title: 'Paranormal', pages: 200, genre: 'thriller', rating: 9},
     {title: '300', pages: 600, genre: 'criminology', rating: 10},
     {title: 'Renewer', pages: 472, genre: 'biology', rating: 2},
+    {title: 'Do 7 zadania', pages: 11, genre: 'maslo', rating: 10}
 ];
 //PRZYKŁADY:
 //tworzymy funkcje
@@ -24,3 +25,29 @@ const genreIsFantasyPages = compose(sumPages, mapToPages, filterGenreIsFantasy);
 //wypisujemy dla książek
 console.log(titleStartsWithTotalPages(books));
 console.log(genreIsFantasyPages(books));
+
+//6
+const TitleLengthWithoutSpaces = (list) => list.map(({title}) => title = title.split(" ").join("").length);
+const EvenPages = (list) => list.filter((book) => book.pages %2 != 1);
+const GenreEndsWithY = (list) => list.filter((book) => book.genre[book.genre.length - 1] == "y");
+const z1 = compose(TitleLengthWithoutSpaces, GenreEndsWithY, EvenPages)
+
+console.log(z1(books))
+
+//7
+const OddPages = (list) => list.filter((book) => book.pages %2 == 1);
+const PositiveRating = (list) => list.filter((book) => book.rating > 5);
+const titleWithNumber = (list) => list.filter((book) => /\d/.test(book.title));
+const z2 = compose(titleWithNumber, PositiveRating, OddPages);
+
+console.log(z2(books))
+
+//8
+const TitleLength = (list) => list.map(({title}) =>book = title.length);
+const Sort = (list) => list.filter((book) => book = TitleLength(books).sort())
+const ScndLast = (list) => list.filter((book) => book = book.title[TitleLength(books) - 2]);
+const z3 = compose(TitleLength, Sort, ScndLast);
+
+console.log(TitleLength(books))
+console.log(Sort(books))
+//console.log(z3(books))
