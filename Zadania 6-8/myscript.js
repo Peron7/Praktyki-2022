@@ -43,11 +43,9 @@ const z2 = compose(titleWithNumber, PositiveRating, OddPages);
 console.log(z2(books))
 
 //8
-const TitleLength = (list) => list.map(({title}) =>book = title.length);
-const Sort = (list) => list.filter((book) => book = TitleLength(books).sort())
-const ScndLast = (list) => list.filter((book) => book = book.title[TitleLength(books) - 2]);
-const z3 = compose(TitleLength, Sort, ScndLast);
+const Title = (list) => list.map((book) =>book.title);
+const Sort = (list) => list.sort((a, b) => b.length - a.length)
+const ScndLast = (list) => list[1];
+const z3 = compose(ScndLast, Sort, Title);
 
-console.log(TitleLength(books))
-console.log(Sort(books))
-//console.log(z3(books))
+console.log(z3(books))
